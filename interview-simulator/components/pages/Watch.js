@@ -1,38 +1,18 @@
-import React, { useState, useEffect, useCallback, ScrollView, Dimensions } from "react";
-import Animated, { useSharedValue, useAnimatedStyle ,TouchableWithoutFeedback} from 'react-native-reanimated';
-import TopMenuBar from "../TopMenuBar";
+import React, { useState } from "react";
 import { WebView } from 'react-native-webview';
-import Constants from 'expo-constants';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import {
   Text,
   View,
   StyleSheet,
-  Image,
-  TouchableOpacity,
-  ImageBackground
+  TouchableOpacity
 } from "react-native";
-import ftwColors from '../data/ColorsFTW';
-import BigScroll from '../BigScroll';
-import bgImages from '../data/imagesUris';
 
 
 export default function Learn({ navigation }) {
-  const [currentSkin, setCurrentSkin] = useState("default");
-  const [currentLocalSkin, setCurrentLocalSkin] = useState(0);
   const [videoUrl, setVideoUrl] = useState('https://www.youtube.com/results?search_query=front+end+job+interview');
-  const [valueLang, setValueLang] = useState(0);
-  const [valueAi, setValueAi] = useState(0);
-  const [valueGender, setValueGender] = useState(0);
-  const [valueChaos, setValueChaos] = useState(0);
-  const [valueHorror, setValueHorror] = useState(0);
 
-  const ftwBorders = ftwColors.backgrounds;
-  //(currentSkin === 'BBB') ? bgBBBskin.theme : bgImages.homePage;
-  const replaceSkin = (skinName) => {
-    setCurrentSkin(skinName)
-  }
+
   return (
     <> 
       <WebView

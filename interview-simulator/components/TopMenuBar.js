@@ -98,9 +98,6 @@ export default function TopMenuBar({ navigation, globalSkin }) {
                  <TouchableOpacity onPress={() => navigation.navigate("INTERVIEW SIMULATOR (Settings)", params = { lang: lang, difficulty: 'MIDDLE', skin: currentSkin })}>
             <TopMenuBtns text="DOWNLOAD " bgcolor="rgba(80, 51, 222, 0.96)" icon={<Fontisto name="download" size={30} color="black" />} textColor="black" />
           </TouchableOpacity>
-                       <TouchableOpacity onPress={() => navigation.navigate("INTERVIEW SIMULATOR (Create)", params = { lang: lang, difficulty: 'MIDDLE', skin: currentSkin })}>
-            <TopMenuBtns text="CREATE " bgcolor="rgba(241, 243, 17, 0.8))" icon={<Fontisto name="upload" size={30} color="black" />} textColor="black" />
-          </TouchableOpacity>
         </ScrollView>
       </View>
     </View>

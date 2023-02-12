@@ -2,7 +2,7 @@ import {
   Alert, Modal, StyleSheet, Text, Pressable, View, ImageBackground, Button, Image, TouchableOpacity, SafeAreaView,
   Animated, TouchableWithoutFeedback
 } from 'react-native';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback,useLayoutEffect } from 'react';
 import { Fontisto } from '@expo/vector-icons';
 import ReactQuestions from "../data/ReactQuestions";
 import AngularQuestions from "../data/AngularQuestions";
@@ -12,7 +12,6 @@ import CountDownCircle from "../CountDownCircle";
 import { ProgressBar } from "react-native-paper";
 import backgroundsBBB from '../data/bbbSkin';
 import backgroundsReact from '../data/ReactImages';
-import Rotate from '../animations/Rotate';
 import ftwBgImages from '../data/FTWthemes';
 import Bosses from '../data/Bosses';
 import CatsBgs from '../data/Cats';
@@ -155,14 +154,15 @@ export default function Quiz({ navigation, route }) {
   }, [perguntaIndex, route.params,amountOfQuestions]);
 
   useEffect(() => {
-    generateQuestion();
     initGame();
     setGameStatus("NEW GAME");
     setGameOver(false);
     setPerguntaIndex(1);
-
     setRandomIndex(Math.floor(Math.random() * Monkeys.default.length));
   }, []);
+    useLayoutEffect(() => {
+    generateQuestion();
+  }, [generateQuestion]);
 
   const listItems = questions?.map((question, index) => (
     <View

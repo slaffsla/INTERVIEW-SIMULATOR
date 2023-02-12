@@ -12,7 +12,6 @@ import HelpPage from "./components/pages/Help";
 import TopMenuBar from "./components/TopMenuBar";
 import GameOver from "./components/pages/GameOver";
 import SettingPage from "./components/pages/Settimng";
-import CreateTheme from "./components/pages/CreateTheme";
 import StoryModePage from "./components/pages/StoryModePage";
 import Learn from "./components/pages/Watch";
 const Stack = createNativeStackNavigator();
@@ -29,7 +28,6 @@ function App() {
           <TopMenuBar navigation={navigationRef}  />
         <Stack.Navigator>
           <Stack.Screen name="INTERVIEW SIMULATOR (WelcomePage)" component={WelcomePage} />
-          <Stack.Screen name="INTERVIEW SIMULATOR (Create)" component={CreateTheme} />
           <Stack.Screen name="INTERVIEW SIMULATOR (Settings)" component={SettingPage} />
 
           <Stack.Screen name="INTERVIEW SIMULATOR (AboutPage)" component={About} />
