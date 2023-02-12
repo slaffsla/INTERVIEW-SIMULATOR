@@ -11,7 +11,7 @@ import QuickPlay from "./components/pages/QuickPlay";
 import HelpPage from "./components/pages/Help";
 import TopMenuBar from "./components/TopMenuBar";
 import GameOver from "./components/pages/GameOver";
-import SettingPage from "./components/pages/Settimng";
+import SettingPage from "./components/pages/Settings";
 import StoryModePage from "./components/pages/StoryModePage";
 import Learn from "./components/pages/Watch";
 const Stack = createNativeStackNavigator();
