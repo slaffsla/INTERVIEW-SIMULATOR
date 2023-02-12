@@ -62,10 +62,7 @@ export default function Quiz({ navigation, route }) {
   }
   const submitAnswer = () => {
     setTimerOn(true);
-    if (perguntaIndex >= 10) {
-      setGameStatus("GAME OVER");
-      setGameOver(true);
-      setPerguntaIndex(0);
+    if (perguntaIndex >= 9) {
       navigation.navigate("INTERVIEW SIMULATOR (GameOver)", params = { lang: 'lang', difficulty: 'MIDDLE', skin: currentSkin })
 
     } else {
