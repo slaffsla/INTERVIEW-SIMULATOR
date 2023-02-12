@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState} from "react";
 import {
   Text,
   View,
@@ -8,10 +8,6 @@ import {
   TouchableOpacity,
     Animated, TouchableWithoutFeedback
 } from "react-native";
-
-import { MaterialIcons } from '@expo/vector-icons';
-import TopMenuBar from "../TopMenuBar";
-import { ProgressBar } from "@miblanchard/react-native-slider";
 import MonkeysImages from '../data/Monkeys';
 import ColorsFTW from '../data/ColorsFTW';
 import ftwBgImages from '../data/FTWthemes';
@@ -49,7 +45,7 @@ export default function GameOver({ navigation, calculatedScore, globalSkin, diff
         <TouchableOpacity onPress={() => setCurrentLocalSkin((i) => i + 1)}>
         <View style={[styles.messageDiv,{ borderColor: ftwColorArray[`${[Math.floor(Math.random() * ftwColorArray.length)]}`] }]}>
           <Text style={styles.paragraph}>
-            <MaterialIcons name="phone-locked" size={30} color="black" /> IT WAS PLEASURE ...
+           IT WAS PLEASURE ...
           </Text>
         </View>
         <Image
@@ -69,7 +65,7 @@ export default function GameOver({ navigation, calculatedScore, globalSkin, diff
                 style={styles.iconView}
                 source={require("../../assets/icons/clock.png")}
               />
-              <Text style={styles.paragraph}>TIME : 02:01:0789 sec</Text>
+            
             </View>
           </View>
         </View>

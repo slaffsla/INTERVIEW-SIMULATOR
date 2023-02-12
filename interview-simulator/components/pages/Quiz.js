@@ -8,20 +8,15 @@ import ReactQuestions from "../data/ReactQuestions";
 import AngularQuestions from "../data/AngularQuestions";
 import Html5Questions from "../data/Html5Questions";
 import FixedQuizTop from "../FixedQuizTop";
-import CountDownCircle from "../CountDownCircle";
 import { ProgressBar } from "react-native-paper";
 import backgroundsBBB from '../data/bbbSkin';
 import backgroundsReact from '../data/ReactImages';
 import ftwBgImages from '../data/FTWthemes';
 import Bosses from '../data/Bosses';
-import CatsBgs from '../data/Cats';
 import ColorsFTW from '../data/ColorsFTW';
 import VideoAvatar from '../videoAvatar';
-import WebCamView from '../WebCamView';
 import QuizControlPanel from '../quizControlPanel';
 import Monkeys from '../data/Monkeys';
-import Checkbox from 'expo-checkbox';
-import Gifs from '../data/Gifs';
 import ftwColors from '../data/ColorsFTW';
 let correctList = [];
 let responseList = [];
@@ -286,7 +281,6 @@ export default function Quiz({ navigation, route }) {
             top: 330, position: 'absolute', alignItems: 'center',
             textAlign: 'center'
           }]} >
-            <CountDownCircle mode={timerOn} />
             {selectedId !== null && (<Animated.View style={[styles.cicrcle, animatedStyles, { borderColor: 'white' }]} />)}
             {selectedId !== null && (
 
