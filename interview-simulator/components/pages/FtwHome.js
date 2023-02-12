@@ -9,22 +9,12 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  ImageBackground,
-  Stack,
-  SafeAreaView,
-  Easing,
-  ActivityIndicator
+  ImageBackground
 } from "react-native";
 import ProgramLangSlider from "../programLangSlider";
 import Avatars from "../avatarsFtw.js";
-import ImageSlider from '../ImageSlider';
-import { AirbnbRating } from "@rneui/base";
 import ftwColors from '../data/ColorsFTW';
-import FtwTextComponent from '../FtwText';
 import bgImages from '../data/imagesUris';
-import LoadingSpinner from '../LoadingSpinner';
-import bgBBBskin from '../data/bbbSkin';
-import motivatorsBgs from '../data/ProfileMotivators';
 
 
 export default function Home({ navigation }) {
