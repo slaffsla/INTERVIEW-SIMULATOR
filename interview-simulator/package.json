@@ -11,6 +11,7 @@
     "@miblanchard/react-native-slider": "^2.2.0",
     "@react-native-community/slider": "4.2.4",
     "@react-native-material/core": "*",
+    "@react-native-picker/picker": "github:react-native-picker/picker",
     "@react-navigation/elements": "*",
     "@react-navigation/native": "*",
     "@react-navigation/native-stack": "*",

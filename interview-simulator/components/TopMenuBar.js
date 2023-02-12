@@ -10,10 +10,12 @@ import {
   ScrollView,
   ImageBackground
 } from "react-native";
+import FtwTextComponent from './FtwText';
 import { FontAwesome, FontAwesome5, AntDesign, Fontisto } from '@expo/vector-icons';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import TopMenuBtns from './TopMenuBtns';
-import { Picker, Item } from 'react-native-picker/picker';
+import { Picker, Item } from '@react-native-picker/picker';
+
 import CatsBgs from './data/Cats'
 import Monkeys from './data/Monkeys'
 export default function TopMenuBar({ navigation, globalSkin }) {
