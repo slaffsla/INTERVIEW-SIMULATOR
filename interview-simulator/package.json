@@ -1,43 +1,36 @@
 {
-  "expo": {
-    "name": "interview-simulator",
-    "slug": "interview-simulator",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/snack-icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/snack-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/snack-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.zabaroth.interviewSimulator"
-    },
-    "web": {
-      "favicon": "./assets/snack-icon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "ad924698-579a-437c-9c85-1759cb4399f9"
-      }
-    },
-    "owner": "zabaroth"
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "^47.0.13"
-  }
+    "expo": "~47.0.12",
+    "expo-status-bar": "~1.4.2",
+    "react": "18.1.0",
+    "react-native": "0.70.5",
+    "expo-av": "~13.0.2",
+    "expo-asset": "~8.7.0",
+    "@rneui/base": "4.0.0-rc.7",
+    "@rneui/themed": "*",
+    "expo-checkbox": "~2.2.2",
+    "expo-constants": "~14.0.2",
+    "@expo/vector-icons": "^13.0.0",
+    "react-native-paper": "4.9.2",
+    "react-native-share": "*",
+    "react-native-video": "*",
+    "react-native-screens": "~3.18.0",
+    "@react-navigation/native": "*",
+    "@react-navigation/elements": "*",
+    "@react-native-material/core": "*",
+    "@react-native-community/slider": "4.2.4",
+    "@react-navigation/native-stack": "*",
+    "react-native-safe-area-context": "4.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9"
+  },
+  "private": true
 }
