@@ -27,7 +27,6 @@ const DEFAULT_VALUE = 2;
 export default function SettingsPage({ navigation }) {
   const [currentSkin, setCurrentSkin] = useState("default");
   const [loading, setLoading] = React.useState(false);
-  const [animation, setAnimation] = useState(new Animated.Value(1));
   const [valueMood, setValueMood] = useState(Math.floor(Math.random() * 8));
   const [bgImageUrls, setBgImageUrls] = useState(WelcomePageTheme.motivators[0]);
   const bgList = [WelcomePageTheme.kittens, WelcomePageTheme.monkey, WelcomePageTheme.tripping, WelcomePageTheme.motivators, WelcomePageTheme.soviet, WelcomePageTheme.nerd, WelcomePageTheme.obey, WelcomePageTheme.asian, WelcomePageTheme.bbb, WelcomePageTheme.bbb]
@@ -45,18 +44,12 @@ export default function SettingsPage({ navigation }) {
   const ftwBorders = ftwColors.backgrounds;
   const ftwSlider = ftwColors.skinSlider;
 
-  const SliderContainer = (props: {
-    caption: string;
-    children: React.ReactElement;
-    sliderValue?: Array<number>;
-    trackMarks?: Array<number>;
-    vertical?: boolean;
-  }) => {
+  const SliderContainer = (props) => {
     const { caption, sliderValue, trackMarks } = props;
     const [value, setValue] = React.useState(
       sliderValue ? sliderValue : DEFAULT_VALUE,
     );
-    let renderTrackMarkComponent: React.ReactNode;
+    let renderTrackMarkComponent;
 
     if (trackMarks?.length && (!Array.isArray(value) || value?.length === 1)) {
       renderTrackMarkComponent = (index) => {
@@ -73,7 +66,7 @@ export default function SettingsPage({ navigation }) {
     const renderChildren = () => {
       return React.Children.map(
         props.children,
-        (child: React.ReactElement) => {
+        (child) => {
           if (!!child && child.type === Slider) {
             return React.cloneElement(child, {
               onValueChange: setValueMood,
@@ -89,6 +82,7 @@ export default function SettingsPage({ navigation }) {
     return (
       <View style={styles.sliderContainer}>
         <View style={styles.titleContainer}>
+          <Text>{caption}</Text>
           <Text>{Array.isArray(value) ? value.join(' - ') : value}</Text>
         </View>
         {renderChildren()}
@@ -106,7 +100,7 @@ export default function SettingsPage({ navigation }) {
         }}
       >
         <Rotate onRecteate={(old) => setValueMood(Math.floor(Math.random() * 9))} />
-        <TouchableOpacity onPress={() => setCurrentLocalSkin((i) => i + 1)}>
+        <TouchableOpacity onPress={() => setCurrentSkin((i) => i + 1)}>
           <View style={[styles.messageDivWelcome, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }]}>
             <SliderContainer style={{
               margin: 5,
@@ -119,10 +113,8 @@ export default function SettingsPage({ navigation }) {
               sliderValue={valueMood}
               step={1}
               trackMarks={[0, 2, 4, 6, 8]}>
-              <Slider minimumTrackTintColor="red" width={320} padding={1} margin={15} backgroundColor="rgba(231, 61, 116, 0.24)" borderRadius={6} maximumTrackTintColor="#1fb28a" animateTransitions maximumValue={9} borderWidth={3} minimumValue={0} step={1} borderColor={ftwSlider[valueMood]} />
-
+              <Slider minimumTrackTintColor="red" width={320} padding={5} margin={15} backgroundColor="rgba(231, 61, 116, 0.24)" borderRadius={6} maximumTrackTintColor="#1fb28a" animateTransitions maximumValue={9} borderWidth={3} minimumValue={0} step={1} borderColor={ftwSlider[valueMood]} />
             </SliderContainer>
-
           </View>
         </TouchableOpacity>
       </ImageBackground>
