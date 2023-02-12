@@ -64,18 +64,12 @@ export default function WelcomePage({ navigation ,topMenuBar}) {
       { scale: animation }
     ]
   }
-  const SliderContainer = (props: {
-    caption: string;
-    children: React.ReactElement;
-    sliderValue?: Array<number>;
-    trackMarks?: Array<number>;
-    vertical?: boolean;
-  }) => {
+  const SliderContainer = (props) => {
     const { caption, sliderValue, trackMarks } = props;
     const [value, setValue] = React.useState(
       sliderValue ? sliderValue : DEFAULT_VALUE,
     );
-    let renderTrackMarkComponent: React.ReactNode;
+    let renderTrackMarkComponent;
 
     if (trackMarks?.length && (!Array.isArray(value) || value?.length === 1)) {
       renderTrackMarkComponent = (index) => {
@@ -92,7 +86,7 @@ export default function WelcomePage({ navigation ,topMenuBar}) {
     const renderChildren = () => {
       return React.Children.map(
         props.children,
-        (child: React.ReactElement) => {
+        (child) => {
           if (!!child && child.type === Slider) {
             return React.cloneElement(child, {
               onValueChange: setValueMood,
