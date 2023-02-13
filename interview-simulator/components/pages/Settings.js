@@ -83,7 +83,7 @@ export default function SettingsPage({ navigation }) {
       <View style={styles.sliderContainer}>
         <View style={styles.titleContainer}>
           <Text>{caption}</Text>
-          <Text>{Array.isArray(value) ? value.join(' - ') : value}</Text>
+          <Text>{value}</Text>
         </View>
         {renderChildren()}
       </View>

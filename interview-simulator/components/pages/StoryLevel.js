@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     borderColor: "#46ac0a",
     padding: 5,
     margin: 0,
+    opacity: 1,
     fontSize: 25,
     fontWeight: 'bold',
     borderWidth: 4

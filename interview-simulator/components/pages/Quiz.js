@@ -2,48 +2,45 @@ import {
   Alert, Modal, StyleSheet, Text, Pressable, View, ImageBackground, Button, Image, TouchableOpacity, SafeAreaView,
   Animated, TouchableWithoutFeedback
 } from 'react-native';
-import React, { useState, useEffect, useCallback,useLayoutEffect } from 'react';
+import React, { useState, useEffect, useCallback, useLayoutEffect } from 'react';
 import { Fontisto } from '@expo/vector-icons';
 import ReactQuestions from "../data/ReactQuestions";
 import AngularQuestions from "../data/AngularQuestions";
 import Html5Questions from "../data/Html5Questions";
 import FixedQuizTop from "../FixedQuizTop";
+import CountDownCircle from "../CountDownCircle";
 import { ProgressBar } from "react-native-paper";
 import backgroundsBBB from '../data/bbbSkin';
 import backgroundsReact from '../data/ReactImages';
+import Rotate from '../animations/Rotate';
 import ftwBgImages from '../data/FTWthemes';
 import Bosses from '../data/Bosses';
+import CatsBgs from '../data/Cats';
 import ColorsFTW from '../data/ColorsFTW';
 import VideoAvatar from '../videoAvatar';
+import WebCamView from '../WebCamView';
 import QuizControlPanel from '../quizControlPanel';
 import Monkeys from '../data/Monkeys';
+import Checkbox from 'expo-checkbox';
+import Gifs from '../data/Gifs';
 import ftwColors from '../data/ColorsFTW';
 let correctList = [];
 let responseList = [];
 let zoombosses = [];
 let zoomBAckgrounds = [];
-let totalScore = 0;
-const initGame = () => {
-  responseList = [];
-  totalScore = 0;
-};
 avatarsFtw = ftwBgImages.avatarsFunny;
 export default function Quiz({ navigation, route }) {
-  const [perguntaTitle, setPerguntaTitle] = useState(null);
-  const [perguntaIndex, setPerguntaIndex] = useState(0);
+  const [perguntaTitles, setPerguntaTitles] = useState([]);
+  const [perguntaIndex, setPerguntaIndex] = useState(1);
   const [selectedId, setSelectedId] = useState(null);
-  const [questions, setQuestions] = useState(null);
-  const [calculatedScore, setCalculatedScore] = useState("finall results");
-  const [gameStatus, setGameStatus] = useState("NEW GAME");
-  const [gameOver, setGameOver] = useState(false);
-  const [bg, setBgImage] = useState(backgroundsReact.noob);
-  const [randomIndex, setRandomIndex] = useState(0);
+  const [questions, setQuestions] = useState([]);
+  const [calculatedScore, setCalculatedScore] = useState(0);
   const [currentSkin, setCurrentSkin] = useState(null);
   const [isVideoChecked, setVideoChecked] = useState(false);
   const ftwColorArray = ColorsFTW.progressBars;
   const [animation, setAnimation] = useState(new Animated.Value(1));
   const [timerOn, setTimerOn] = useState(true);
-  const [amountOfQuestions, setAmountOfQuestions] = useState(15);
+  const amountOfQuestions = 10;
   const startAnimation = () => {
     Animated.timing(animation, {
       toValue: 7,
@@ -61,17 +58,15 @@ export default function Quiz({ navigation, route }) {
     ]
   }
   const submitAnswer = () => {
-    setTimerOn(true);
-    if (perguntaIndex >= 9) {
-      navigation.navigate("INTERVIEW SIMULATOR (GameOver)", params = { lang: 'lang', difficulty: 'MIDDLE', skin: currentSkin })
-
+    if (perguntaIndex === amountOfQuestions) {
+      calculateFinallResult();
+      setPerguntaIndex(1);
+      navigation.navigate("INTERVIEW SIMULATOR (GameOver)", params = { lang: route.params.lang, difficulty: route.params.difficulty, skin: currentSkin, calculatedScore: calculatedScore })
     } else {
 
+      setPerguntaIndex((old) => old += 1); //TODO:check change
       calculateFinallResult();
-      setPerguntaIndex((old) => old + 1); //TODO:check change
-      generateQuestion();
       setSelectedId(null);
-
     }
   };
   const ftwBorders = ftwColors.backgrounds;
@@ -83,32 +78,40 @@ export default function Quiz({ navigation, route }) {
         difference += 1;
       }
     }
-    setCalculatedScore(`SCORE = ${difference}`);
+    setCalculatedScore(difference);
   };
-  const generateQuestion = useCallback(() => {
+  const generateQuestions = useCallback(() => {
     //TODO: repeated code refactor
+    correctList = [];
+    questionsTitles = [];
     if (route.params.lang === "REACT") {
       setQuestions(ReactQuestions[perguntaIndex].answers);
-      setPerguntaTitle(ReactQuestions[perguntaIndex].question);
-      correctList = [];
+
+      ReactQuestions.forEach((item) => {
+        questionsTitles.push(item.question)
+      });
       ReactQuestions.forEach((item) => {
         correctList.push(item.correctIndex);
       });
     } else if (route.params.lang === "ANGULAR") {
       setQuestions(AngularQuestions[perguntaIndex].answers);
-      setPerguntaTitle(AngularQuestions[perguntaIndex].question);
-      correctList = [];
+      AngularQuestions.forEach((item) => {
+        questionsTitles.push(item.question)
+      });
+
       AngularQuestions.forEach((item) => {
         correctList.push(item.correctIndex);
       });
     } else {
       setQuestions(Html5Questions[perguntaIndex].answers);
-      setPerguntaTitle(Html5Questions[perguntaIndex].question);
-      correctList = [];
+      Html5Questions.forEach((item) => {
+        questionsTitles.push(item.question)
+      });
       Html5Questions.forEach((item) => {
         correctList.push(item.correctIndex);
       });
     }
+    setPerguntaTitles(questionsTitles);
     zoombosses = [];
     zoomBAckgrounds = [];
     customAvatars = [];
@@ -119,7 +122,7 @@ export default function Quiz({ navigation, route }) {
     if (route.params.skin) {
       customBgs = route.params.skin.split(',')
     }
-    for (let i = 0; i < amountOfQuestions; i++) {
+    for (let i = 0; i <= 20; i++) {
       zoomBAckgrounds.push(ftwBgImages.pyramid[Math.floor(Math.random() * ftwBgImages.pyramid.length)])
 
       if (customAvatars.length > 0 && customBgs.length > 0) {
@@ -139,22 +142,16 @@ export default function Quiz({ navigation, route }) {
           zoomBAckgrounds.push(backgroundsBBB.sinior[Math.floor(Math.random() * backgroundsBBB.sinior.length)])
         }
       }
-
-
     }
-
-  }, [perguntaIndex, route.params,amountOfQuestions]);
+  }, [perguntaIndex, route.params]);
 
   useEffect(() => {
-    initGame();
-    setGameStatus("NEW GAME");
-    setGameOver(false);
-    setPerguntaIndex(1);
-    setRandomIndex(Math.floor(Math.random() * Monkeys.default.length));
+    generateQuestions();
+  }, [generateQuestions]);
+  useLayoutEffect(() => {
+    setSelectedId(null);
+   
   }, []);
-    useLayoutEffect(() => {
-    generateQuestion();
-  }, [generateQuestion]);
 
   const listItems = questions?.map((question, index) => (
     <View
@@ -171,7 +168,6 @@ export default function Quiz({ navigation, route }) {
     >
       <TouchableOpacity onPress={() => {
         setSelectedId(index);
-        setTimerOn(() => false);
       }} >
         <Text style={{
           padding: 10,
@@ -202,7 +198,7 @@ export default function Quiz({ navigation, route }) {
         backgroundColor={ftwColorArray[`${perguntaIndex}`]}
       >
 
-        <QuizControlPanel onVideoSelected={setVideoChecked} {...{ navigation }} lang={route.params.lang} route={route} perguntaIndex={perguntaIndex} randomIndex={randomIndex} style={{
+        <QuizControlPanel onVideoSelected={setVideoChecked} {...{ navigation }} lang={route.params.lang} route={route} perguntaIndex={perguntaIndex} style={{
           width: 300,
           justifyContent: "center",
           position: 'absolute',
@@ -213,7 +209,7 @@ export default function Quiz({ navigation, route }) {
 
         }} />
         <View style={styles.row} >
-          <FixedQuizTop {...{ navigation }} lang={route.params.lang} route={route} perguntaIndex={perguntaIndex} randomIndex={randomIndex}
+          <FixedQuizTop {...{ navigation }} lang={route.params.lang} route={route} perguntaIndex={perguntaIndex}
           />
         </View>
         <View
@@ -225,12 +221,12 @@ export default function Quiz({ navigation, route }) {
               width: 350,
               marginTop: 1,
               resizeMode: "stretch",
-              borderColor: ftwColorArray[`${perguntaIndex + 1}`],
+              borderColor: ftwColorArray[`${perguntaIndex}`],
               opacity: 0.9
             },
           ]}
         >
-          <Text style={[styles.paragraph, { fontSize: 20 }]}> {perguntaTitle} </Text>
+          <Text style={[styles.paragraph, { fontSize: 20 }]}>{perguntaIndex} {perguntaTitles[perguntaIndex]} </Text>
         </View>
         {isVideoChecked &&
           <VideoAvatar style={{
@@ -252,7 +248,7 @@ export default function Quiz({ navigation, route }) {
               },
             ]}
             source={{
-              uri: zoombosses[`${perguntaIndex + 1}`],
+              uri: zoombosses[`${perguntaIndex}`],
             }}
           />}
         <View
@@ -278,6 +274,7 @@ export default function Quiz({ navigation, route }) {
             top: 330, position: 'absolute', alignItems: 'center',
             textAlign: 'center'
           }]} >
+            <CountDownCircle mode={timerOn} />
             {selectedId !== null && (<Animated.View style={[styles.cicrcle, animatedStyles, { borderColor: 'white' }]} />)}
             {selectedId !== null && (
 

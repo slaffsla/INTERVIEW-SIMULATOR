@@ -71,10 +71,10 @@ export default function WelcomePage({ navigation ,topMenuBar}) {
     );
     let renderTrackMarkComponent;
 
-    if (trackMarks?.length && (!Array.isArray(value) || value?.length === 1)) {
+    if (trackMarks?.length) {
       renderTrackMarkComponent = (index) => {
         const currentMarkValue = trackMarks[index];
-        const currentSliderValue = (Array.isArray(value) && value[0]) || 0;
+        const currentSliderValue = (value);
         const style =
           currentMarkValue > Math.max(currentSliderValue)
             ? trackMarkStyles.activeMark
@@ -103,7 +103,7 @@ export default function WelcomePage({ navigation ,topMenuBar}) {
       <View style={styles.sliderContainer}>
         <View style={styles.titleContainer}>
           <Text>{caption}</Text>
-          <Text>{Array.isArray(value) ? value.join(' - ') : value}</Text>
+          <Text>{value}</Text>
         </View>
         {renderChildren()}
       </View>

@@ -66,7 +66,9 @@ const ScirmishDiffBgs = {
 'https://i.postimg.cc/CL4qL206/RNFetch-Blob-Tmp-yt5qm1tctdqnntynpbylt.png'],
 
 
-  middle:['https://i.postimg.cc/289cgsnD/RNFetch-Blob-Tmp-080qi1rk0kxhi9yqw9363s.png',
+  middle:[
+    'https://i.postimg.cc/fTKk0vk5/RNFetch-Blob-Tmp-a0nmiavwog4vtni9p0dxnj-png-swing.gif',
+    'https://i.postimg.cc/289cgsnD/RNFetch-Blob-Tmp-080qi1rk0kxhi9yqw9363s.png',
 'https://i.postimg.cc/pTQc7yJG/RNFetch-Blob-Tmp-0bntv7gsllq93f39fnkejd2.png',
 'https://i.postimg.cc/SRhjrQyf/RNFetch-Blob-Tmp-0lki22t3odmzmhvhq28x3e.png',
 'https://i.postimg.cc/MTX8J7XP/RNFetch-Blob-Tmp-0r3c7y4w2eznok8d192cz9.png',
@@ -188,7 +190,10 @@ const ScirmishDiffBgs = {
 'https://i.postimg.cc/vHwHfK4G/RNFetch-Blob-Tmp-zxi68d7f4gqwgck76jizg.png'],
 
 
- sinior:['https://i.postimg.cc/05fD69BY/RNFetch-Blob-Tmp-1oz5gd1rxbjor5p1xefs6j.png',
+ sinior:[
+  'https://i.postimg.cc/Y9ZYZzQQ/RNFetch-Blob-Tmp-fz96h6t4d1ua4i0uqhg6zk-png-circle.gif',
+  'https://i.postimg.cc/Y9hQdsLp/RNFetch-Blob-Tmp-15york256ik4m9gad5sqkd-png-circle.gif',
+  'https://i.postimg.cc/05fD69BY/RNFetch-Blob-Tmp-1oz5gd1rxbjor5p1xefs6j.png',
 'https://i.postimg.cc/3RZ4DZn8/RNFetch-Blob-Tmp-2hm3i1i2aofb293biysfqg.png',
 'https://i.postimg.cc/PqWNB4GW/RNFetch-Blob-Tmp-4uabfotc8vrqr0h8uplar.png',
 'https://i.postimg.cc/d0rTJFCT/RNFetch-Blob-Tmp-7zg6m5otcot1pkk4wxvytck.png',

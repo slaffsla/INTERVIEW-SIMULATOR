@@ -1038,6 +1038,8 @@ const ftwBgImages = {
     'https://i.postimg.cc/gjZhtw4c/RNFetch-Blob-Tmp-ha8ihyix8gtchny5ja63g-Copy.png',
   ],
   avatarsFunny: [
+    'https://i.postimg.cc/RVcKpfhn/RNFetch-Blob-Tmp-aq1fa7h6bzd09ggn3gm3bmg-png-circle.gif',
+    'https://i.postimg.cc/gcy2fKyd/RNFetch-Blob-Tmp-bf78ac5edbcyz3gmczdaic-png-swing.gif',
     'https://i.postimg.cc/8PNyHBmc/1.jpg',
     'https://i.postimg.cc/VvcK2jy7/7-1.jpg',
     'https://i.postimg.cc/qRKmm1Fh/RNFetch-Blob-Tmp-01tej417g9r8rpu1h4fm3l.png',

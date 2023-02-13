@@ -29,6 +29,11 @@
       },
       "package": "com.zabaroth.interviewSimulator"
     },
+    
+    "androidStatusBar": {
+      "backgroundColor": "#C2185B",
+      "translucent": false
+    },
     "web": {
       "favicon": "./assets/favicon.png"
     },

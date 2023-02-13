@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import {
   Text,
   View,
@@ -8,11 +8,13 @@ import {
   TouchableOpacity,
     Animated, TouchableWithoutFeedback
 } from "react-native";
+
+import { MaterialIcons } from '@expo/vector-icons';
 import MonkeysImages from '../data/Monkeys';
 import ColorsFTW from '../data/ColorsFTW';
 import ftwBgImages from '../data/FTWthemes';
  import ftwColors from '../data/ColorsFTW';
-export default function GameOver({ navigation, calculatedScore, globalSkin, difficulty }) {
+export default function GameOver({ navigation,route }) {
    const [animation, setAnimation] = useState(new Animated.Value(0));
   const [currentLocalSkin, setCurrentLocalSkin] = useState(0);
   const ftwColorArray = ColorsFTW.progressBars;
@@ -45,7 +47,7 @@ export default function GameOver({ navigation, calculatedScore, globalSkin, diff
         <TouchableOpacity onPress={() => setCurrentLocalSkin((i) => i + 1)}>
         <View style={[styles.messageDiv,{ borderColor: ftwColorArray[`${[Math.floor(Math.random() * ftwColorArray.length)]}`] }]}>
           <Text style={styles.paragraph}>
-           IT WAS PLEASURE ...
+            <MaterialIcons name="phone-locked" size={30} color="black" /> IT WAS PLEASURE ...
           </Text>
         </View>
         <Image
@@ -54,9 +56,9 @@ export default function GameOver({ navigation, calculatedScore, globalSkin, diff
             uri: MonkeysImages.default[[Math.floor(Math.random() *  MonkeysImages.default.length)]],
           }}
         />
-        <View style={[styles.messageDiv, { borderColor: ftwColorArray[`${calculatedScore}`] }]}>
+        <View style={[styles.messageDiv, { borderColor: ftwColorArray[route.params.calculatedScore] }]}>
           <Text style={styles.paragraph}>WE WILL CALL YOU...</Text>
-          <Text style={styles.paragraph}>{calculatedScore} / 10</Text>
+          <Text style={styles.paragraph}>{route.params.calculatedScore} / 10</Text>
         </View>
         <View style={styles.shareRatePanel}>
           <View style={[styles.messageDiv, { borderColor: ftwColorArray[`${[Math.floor(Math.random() * ftwColorArray.length)]}`] }]}>
@@ -65,7 +67,7 @@ export default function GameOver({ navigation, calculatedScore, globalSkin, diff
                 style={styles.iconView}
                 source={require("../../assets/icons/clock.png")}
               />
-            
+              <Text style={styles.paragraph}>TIME : 02:01:0789 sec</Text>
             </View>
           </View>
         </View>

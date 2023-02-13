@@ -1,6 +1,7 @@
 
 const Monkeys = {
   default: [
+    'https://i.postimg.cc/7YbnBb73/RNFetch-Blob-Tmp-bsmv0ovtxoke6kmur7sj8-png-circle.gif',
 'https://i.postimg.cc/T13SH2WW/RNFetch-Blob-Tmp-068kvn2vbayn7rvhdgfxs13.png',
     'https://i.postimg.cc/kGPGxZVZ/RNFetch-Blob-Tmp-0kqpxlglmteiw0eo56ca4h.png',
     'https://i.postimg.cc/kGN4wcK5/RNFetch-Blob-Tmp-0n7lmc2kwulxrncet9s79.png',
@@ -165,6 +166,7 @@ const Monkeys = {
     'https://i.postimg.cc/DfDkYsBv/RNFetch-Blob-Tmp-zo9yp7ndig0canmmewvwn.png'
   ],
   endGame: [
+    'https://i.postimg.cc/7YbnBb73/RNFetch-Blob-Tmp-bsmv0ovtxoke6kmur7sj8-png-circle.gif',
     'https://i.postimg.cc/c4jjXS1r/RNFetch-Blob-Tmp-591jmu6vies6zbeewqnm3n.png',
     'https://i.postimg.cc/0QYPqNQW/RNFetch-Blob-Tmp-5jyqp6b2p8hgdqee6h6iwr.png',
     'https://i.postimg.cc/KjQbRstt/RNFetch-Blob-Tmp-6jy7n7bs0ko0l4noyq1djzp.png',
