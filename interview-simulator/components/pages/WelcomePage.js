@@ -22,36 +22,21 @@ import {
   trackMarkStyles,
 } from '../styles';
 const DEFAULT_VALUE = 0.2;
-export default function WelcomePage({ navigation ,topMenuBar}) {
+export default function WelcomePage({ navigation }) {
   const [currentSkin, setCurrentSkin] = useState("default");
   const [userName, setUserName] = useState("JHON DOE");
-  const [currentLocalSkin, setCurrentLocalSkin] = useState(0);
   const [loading, setLoading] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
   const [animation, setAnimation] = useState(new Animated.Value(1));
   const [valueMood, setValueMood] = useState(5);
-  const [bgImageUrls, setBgImageUrls] = useState(WelcomePageTheme.motivators[0]);
   const bgList = [WelcomePageTheme.kittens, WelcomePageTheme.monkey, WelcomePageTheme.tripping, WelcomePageTheme.motivators, WelcomePageTheme.soviet, WelcomePageTheme.nerd, WelcomePageTheme.obey, WelcomePageTheme.asian, WelcomePageTheme.bbb, WelcomePageTheme.bbb]
   const bgs = bgList[valueMood]
-  const startLoading = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 700);
-  };
-  useEffect(() => {
-    startLoading()
-  }, []);
   const [text, onChangeText] = useState('Enter USer name');
   const ftwBorders = ftwColors.backgrounds;
   const ftwSlider = ftwColors.skinSlider;
-  const replaceSkin = (skinName) => {
-    setCurrentSkin(skinName)
-  }
   const startAnimation = () => {
     Animated.timing(animation, {
       toValue: 5,
-      duration: 1500,
+      duration: 700,
       useNativeDriver: true
     })
       .start(({ returnAnimation }) => {
@@ -71,10 +56,10 @@ export default function WelcomePage({ navigation ,topMenuBar}) {
     );
     let renderTrackMarkComponent;
 
-    if (trackMarks?.length) {
+    if (trackMarks?.length && (!Array.isArray(value) || value?.length === 1)) {
       renderTrackMarkComponent = (index) => {
         const currentMarkValue = trackMarks[index];
-        const currentSliderValue = (value);
+        const currentSliderValue = (Array.isArray(value) && value[0]) || 0;
         const style =
           currentMarkValue > Math.max(currentSliderValue)
             ? trackMarkStyles.activeMark
@@ -103,7 +88,7 @@ export default function WelcomePage({ navigation ,topMenuBar}) {
       <View style={styles.sliderContainer}>
         <View style={styles.titleContainer}>
           <Text>{caption}</Text>
-          <Text>{value}</Text>
+          <Text>{Array.isArray(value) ? value.join(' - ') : value}</Text>
         </View>
         {renderChildren()}
       </View>
@@ -119,41 +104,41 @@ export default function WelcomePage({ navigation ,topMenuBar}) {
           uri: bgs[Math.floor(Math.random() * bgs.length)],
         }}
       >
+      
+        <View style={[styles.messageDivWelcome, { backgroundColor: 'rgba(46, 235, 16, 0.23)', borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }]}>
+          <TextInput
+              style={styles.input}
+              onChangeText={setUserName}
+              value={userName}
+              backgroundColor="white"
+            />
+          <View style={styles.container} >
+                 <TouchableWithoutFeedback onPress={startAnimation}>
+              <Image
+                style={[styles.submitBtn,
+                { borderColor: "white" }]}
+                source={{
+                  uri: Monkeys.noob[Math.floor(Math.random() * Monkeys.noob.length)],
+                }}
+              />
+            </TouchableWithoutFeedback>
+            <Animated.View style={[styles.cicrcle, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }, { backgroundColor: `${ftwColors.skinSlider[Math.floor(Math.random() * ftwColors.skinSlider.length)]}` }]} />
+            <Animated.View style={[styles.cicrcle2, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }, { backgroundColor: `${ftwColors.skinSlider[Math.floor(Math.random() * ftwColors.skinSlider.length)]}` }]} />
+            <Animated.View style={[styles.cicrcle3, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }, { backgroundColor: `${ftwColors.skinSlider[Math.floor(Math.random() * ftwColors.skinSlider.length)]}` }]} />
 
+     
+          </View>
+          <TouchableOpacity
+            onPress={() => setCurrentSkin((old) => old + 1)}>
+            <View style={[styles.messageDiv, { backgroundColor: 'rgba(234, 254, 231, 0.23)', borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }]}>
 
-          <View style={[styles.messageDivWelcome, { backgroundColor:'rgba(46, 235, 16, 0.23)',borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }]}>
-          
-              <View style={[styles.container, {height:200, top: 200, position: 'absolute', zIndex: 9 }]} >
-
-                <Animated.View style={[styles.box, animatedStyles]} />
-                  <TouchableWithoutFeedback onPress={startAnimation}>
-                <Image
-                  style={[styles.submitBtn,
-                  { borderColor: "white" }]}
-                  source={{
-                    uri: Monkeys.noob[Math.floor(Math.random() * Monkeys.noob.length)],
-                  }}
-                />
-                    </TouchableWithoutFeedback>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={setUserName}
-                  value={userName}
-                  backgroundColor="white"
-                />
-                <Animated.View style={[styles.box2, animatedStyles]} />
-              </View>
-                <TouchableOpacity
-          onPress={() => setCurrentSkin((old)=> old + 1)}>
-            <View style={[styles.messageDiv, {backgroundColor:'rgba(234, 254, 231, 0.23)', borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }]}>
-       
               <SliderContainer style={{
                 alignItems: 'center',
                 justifyContent: 'center',
                 resizeMode: 'stretch',
                 padding: 10,
                 margin: 10,
-                zIndex:5
+                zIndex: 5
               }}
                 caption={false}
                 sliderValue={valueMood}
@@ -162,8 +147,8 @@ export default function WelcomePage({ navigation ,topMenuBar}) {
                 <Slider minimumTrackTintColor="red" width={280} padding={10} margin={10} backgroundColor="rgba(231, 61, 116, 0.44)" borderRadius={6} maximumTrackTintColor="#1fb28a" animateTransitions maximumValue={9} borderWidth={3} minimumValue={0} step={1} zIndex={12} borderColor={ftwSlider[valueMood]} />
               </SliderContainer>
             </View>
-                    </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
+        </View>
       </ImageBackground>
     </>
   );
@@ -174,22 +159,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center'
   },
-    bgimage: {
+  bgimage: {
     flex: 1,
     alignItems: 'center',
     textAlign: 'center',
-    backgroundColor: "rgba(94, 214, 105, 0.45)",
+    backgroundColor: "rgba(227, 235, 5, 0.9)",
     fontWeight: "bold",
-    opacity: 0.9,
-    margin: 0,
-    resizeMode: 'cover',
+    opacity: 0.8,
+    marginTop: 0,
+    resizeMode: 'stretch',
   },
   input: {
     height: 40,
     textAlign: 'center',
     fontWeight: 'bold',
     color: 'red',
-    margin: 12,
+    margin: 25,
     padding: 10,
     width: 190,
     fontSize: 18,
@@ -209,27 +194,37 @@ const styles = StyleSheet.create({
     zIndex: 9
 
   },
-  box: {
+  cicrcle: {
     width: 150,
     height: 150,
     borderRadius: 150 / 2,
-    borderWidth: 6,
-    borderColor: "rgba(0, 0, 0, 0.57)",
-    top: 155,
-    opacity: 0.7,
+    borderWidth: 10,
+    padding: 5,
+    margin: 5,
     zIndex: 1,
-    backgroundColor:'rgba(255, 255, 255, 0.7)'
+    opacity: 0.6,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    position: 'absolute'
   },
-  box2: {
+  cicrcle2: {
     width: 100,
     height: 100,
     borderRadius: 100 / 2,
-    borderWidth: 6,
-    borderColor: "rgba(0, 0, 0, 0.50)",
-    top: -220,
+    borderWidth: 10,
     zIndex: 2,
-    opacity: 0.7,
-    backgroundColor:'rgba(0, 0, 0, 0.7)'
+    opacity: 0.5,
+    backgroundColor: 'rgba(1, 0, 4, 0.7)',
+    position: 'absolute'
+  },
+  cicrcle3: {
+    width: 50,
+    height: 50,
+    borderRadius: 50 / 2,
+    borderWidth: 10,
+    zIndex: 3,
+    opacity: 0.4,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    position: 'absolute'
   },
   messageDivWelcome: {
     alignItems: 'center',

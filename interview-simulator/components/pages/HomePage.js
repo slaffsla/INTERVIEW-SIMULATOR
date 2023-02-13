@@ -21,27 +21,15 @@ import Monkeys from '../data/Monkeys';
 export default function HomePage({ navigation }) {
   const [currentSkin, setCurrentSkin] = useState("default");
   const [currentLocalSkin, setCurrentLocalSkin] = useState(0);
-  const [loading, setLoading] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
-  const [valueLang, setValueLang] = useState(0);
   const [animation, setAnimation] = useState(new Animated.Value(1));
-  const startLoading = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 700);
-  };
-  useEffect(() => {
-    startLoading()
-  }, []);
+
+
   const ftwBorders = ftwColors.backgrounds;
-  const replaceSkin = (skinName) => {
-    setCurrentSkin(skinName)
-  }
+
     const startAnimation = () => {
     Animated.timing(animation, {
-      toValue: 5,
-      duration: 1500,
+      toValue: 7,
+      duration: 700,
       useNativeDriver: true
     })
       .start(({ returnAnimation }) => {
@@ -85,14 +73,16 @@ export default function HomePage({ navigation }) {
        
         </View>
         <TouchableWithoutFeedback onPress={startAnimation}>
-          <View style={[styles.container, { bottom: 50 }]} >
-            <Animated.View style={[styles.box, animatedStyles]} />
+          <View style={styles.container} >
+          
             <Image
               style={[styles.submitBtn,
               { borderColor: "white" }]}
               source={require("../../assets/icons/startBtnNormal.png")}
             />
-            <Animated.View style={[styles.box2, animatedStyles]} />
+                      <Animated.View style={[styles.cicrcle, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }, { backgroundColor: `${ftwColors.skinSlider[Math.floor(Math.random() * ftwColors.skinSlider.length)]}` }]} />
+            <Animated.View style={[styles.cicrcle2, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }, { backgroundColor: `${ftwColors.skinSlider[Math.floor(Math.random() * ftwColors.skinSlider.length)]}` }]} />
+            <Animated.View style={[styles.cicrcle3, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }, { backgroundColor: `${ftwColors.skinSlider[Math.floor(Math.random() * ftwColors.skinSlider.length)]}` }]} />
           </View>
         </TouchableWithoutFeedback>
         </TouchableOpacity>
@@ -101,60 +91,77 @@ export default function HomePage({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-    container: {
-    flex: 1,
+  container: {
     alignItems: 'center',
     justifyContent: 'center',
+    textAlign: 'center'
+  },
+  bgimage: {
+    flex: 1,
+    alignItems: 'center',
     textAlign: 'center',
-    resizeMode: "cover",
+    backgroundColor: "rgba(227, 235, 5, 0.9)",
+    fontWeight: "bold",
+    opacity: 0.8,
+    marginTop: 0,
+    resizeMode: 'stretch',
   },
  submitBtn: {
     resizeMode: "stretch",
-    marginTop: -20,
-    width: 150,
-    borderWidth: 6,
-    height: 150,
-    borderRadius: 150 / 2,
+    marginTop: 20,
+    width: 200,
+    borderWidth:  12,
+    height: 200,
+    borderRadius: 200 / 2,
     padding: 5,
     margin: 5,
     zIndex: 9
 
   },
-  box: {
+ cicrcle: {
     width: 150,
     height: 150,
     borderRadius: 150 / 2,
-    borderWidth: 6,
-    borderColor: "rgba(255, 255, 255, 0.57)",
-    top: 125,
+    borderWidth: 10,
+    padding: 5,
+    margin: 5,
     zIndex: 1,
-     opacity:0.7,
-       backgroundColor:'rgba(255, 255, 255, 0.7)'
+    opacity: 0.6,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    position: 'absolute'
   },
-  box2: {
+  cicrcle2: {
     width: 100,
     height: 100,
     borderRadius: 100 / 2,
-    borderWidth: 6,
-    borderColor: "rgba(255, 255, 255, 0.57)",
-    top: -130,
+    borderWidth: 10,
     zIndex: 2,
-     opacity:0.7,
-        backgroundColor:'rgba(255, 255, 255, 0.7)'
+    opacity: 0.5,
+    backgroundColor: 'rgba(1, 0, 4, 0.7)',
+    position: 'absolute'
+  },
+  cicrcle3: {
+    width: 50,
+    height: 50,
+    borderRadius: 50 / 2,
+    borderWidth: 10,
+    zIndex: 3,
+    opacity: 0.4,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    position: 'absolute'
   },
   messageDivWelcome: {
-    width: 300,
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    resizeMode: "cover",
-    backgroundColor: "rgba(213, 255, 242, 0.8)",
+    width:260,
+    backgroundColor: "rgba(213, 255, 242, 0.4)",
     borderRadius: 12,
     padding: 10,
-    margin: 20,
+    margin: 10,
     fontSize: 22,
-    borderColor: "rgba(0, 0, 0, 0.91)",
     fontWeight: "bold",
+    borderColor: "rgba(0, 216, 147, 0.80)",
     borderWidth: 3
   },
   paragraph: {
@@ -163,13 +170,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center"
   },
-  bgimage: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: "rgba(94, 214, 105, 0.42)",
-    textAlign: 'center',
-    fontWeight: "bold",
-    opacity: 0.9,
-    margin: 0
-  }
 });

@@ -285,9 +285,12 @@ export default function Quiz({ navigation, route }) {
               />
 
             )}
-
-            {selectedId !== null && (<Animated.View style={[styles.cicrcle2, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }]} />)}
-            {selectedId !== null && (<Animated.View style={[styles.cicrcle3, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }]} />)}
+             {selectedId !== null && (
+               <>
+ <Animated.View style={[styles.cicrcle, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }, { backgroundColor: `${ftwColors.skinSlider[Math.floor(Math.random() * ftwColors.skinSlider.length)]}` }]} />
+          <Animated.View style={[styles.cicrcle2, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }, { backgroundColor: `${ftwColors.skinSlider[Math.floor(Math.random() * ftwColors.skinSlider.length)]}` }]} />
+          <Animated.View style={[styles.cicrcle3, animatedStyles, { borderColor: `${ftwBorders[Math.floor(Math.random() * ftwBorders.length)]}` }, { backgroundColor: `${ftwColors.skinSlider[Math.floor(Math.random() * ftwColors.skinSlider.length)]}` }]} />
+            </> )}
 
           </View>
         </TouchableWithoutFeedback>
@@ -363,7 +366,7 @@ const styles = StyleSheet.create({
     margin: 5,
     zIndex: 1,
     opacity: 0.6,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
     position: 'absolute'
   },
   cicrcle2: {
@@ -373,7 +376,7 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     zIndex: 2,
     opacity: 0.5,
-    backgroundColor: 'rgba(1, 0, 4, 0.7)',
+    backgroundColor: 'rgba(1, 0, 4, 0.6)',
     position: 'absolute'
   },
   cicrcle3: {
@@ -383,7 +386,7 @@ const styles = StyleSheet.create({
     borderWidth: 10,
     zIndex: 3,
     opacity: 0.4,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
     position: 'absolute'
   }
 });
